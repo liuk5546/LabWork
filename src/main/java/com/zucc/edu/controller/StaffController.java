@@ -7,9 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.annotation.Resource;
 
 @Controller
 @RequestMapping(path = "/staff")
@@ -31,6 +28,17 @@ public class StaffController {
     public String addOne(Staff staff){
         staffService.register(staff);
         return "redirect:/staff/index";
+    }
+
+    @RequestMapping("/login")
+    public String login(Staff staff){
+        System.out.println(staff.getIdStaff()+" "+staff.getPasswordStaff());
+        if(staffService.login(staff).getIdStaff() == -1){
+            return "redirect:/error/permit";
+        }else{
+            System.out.print("正确");
+            return "redirect:/staff/index";
+        }
     }
 
 }

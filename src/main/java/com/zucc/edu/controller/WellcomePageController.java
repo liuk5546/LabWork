@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller//声明为控制器
-@RequestMapping(path = "/home") //请求映射
+@RequestMapping(path = "/error") //请求映射
 public class WellcomePageController {
-    //@RequestMapping(path = "/")
+    @RequestMapping(path = "/permit")
     public String index(Model model){
-        model.addAttribute("message","Hello MVC");
+        model.addAttribute("message","密码或用户名错误");
         return "index";
     }
 }

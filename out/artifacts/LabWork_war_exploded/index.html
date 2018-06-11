@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link type="text/css" rel="stylesheet" href="/lib/materialize/css/materialize.min.css"  media="screen,projection"/>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style type="text/css">
+        .btn{
+            width: 100%;
+        }
+    </style>
+    <title>管理实验室人员</title>
+</head>
+<body>
+<div class="row container">
+    <form action="/staff/login" class="col s6 push-s3 pull-s3 m4 push-m4 pull-m4">
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="nickName">账号</label>
+                <input  name="idStaff" id="nickName" type="text" class="validate">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <label for="password">密码</label>
+                <input name="passwordStaff" id="password" type="password" class="validate">
+
+            </div>
+        </div>
+                <input type="submit" class="waves-effect waves-light btn col s12">
+    </form>
+</div>
+<script type="text/javascript" src="/lib/materialize/js/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/materialize/js/materialize.min.js"></script>
+</body>
+</html>

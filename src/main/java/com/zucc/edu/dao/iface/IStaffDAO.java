@@ -1,4 +1,4 @@
-package com.zucc.edu.dao;
+package com.zucc.edu.dao.iface;
 
 import com.zucc.edu.entity.Staff;
 

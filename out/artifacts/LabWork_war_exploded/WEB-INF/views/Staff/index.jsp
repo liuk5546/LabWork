@@ -25,7 +25,6 @@
         <th>编号</th>
         <th>职位</th>
         <th>名称</th>
-        <th>登陆名</th>
         <th>密码</th>
         <th>操作</th>
     </tr>
@@ -34,8 +33,7 @@
             <td>${staff.idStaff}</td>
             <td>${staff.positionStaff}</td>
             <td>${staff.nameStaff}</td>
-            <td>${staff.nikeName}</td>
-            <td>${staff.password}</td>
+            <td>${staff.passwordStaff}</td>
             <td><a href="delete/${staff.idStaff}" class="del">删除</a></td>
         </tr>
     </c:forEach>
@@ -44,8 +42,7 @@
             <td><input type="text" name="idStaff"></td>
             <td><input type="text" name="positionStaff"></td>
             <td><input type="text" name="nameStaff"></td>
-            <td><input type="text" name="nikeName"></td>
-            <td><input type="text" name="password"></td>
+            <td><input type="text" name="passwordStaff"></td>
             <td><input type="submit" value="提交"></td>
         </form>
     </tr>
