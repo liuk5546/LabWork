@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.zucc.edu.entity.LabsEntity" table="Labs" schema="LabWork">
+        <id name="idLab" column="idLab"/>
+        <property name="nameLab" column="nameLab"/>
+        <property name="postionLab" column="postionLab"/>
+        <property name="descriptionLab" column="descriptionLab"/>
+        <property name="getWayLab" column="getWayLab"/>
+    </class>
+</hibernate-mapping>
