@@ -8,6 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "/staff")
 public class StaffController {
@@ -31,13 +34,21 @@ public class StaffController {
     }
 
     @RequestMapping("/login")
-    public String login(Staff staff){
+    public String login(Staff staff,Model model){
         System.out.println(staff.getIdStaff()+" "+staff.getPasswordStaff());
-        if(staffService.login(staff).getIdStaff() == -1){
+        Staff realStaff = staffService.login(staff);
+        if(realStaff.getIdStaff() == -1){
             return "redirect:/error/permit";
         }else{
-            System.out.print("正确");
-            return "redirect:/staff/index";
+            model.addAttribute("staff",realStaff);
+            if(realStaff.getPositionStaff().equals("管理员")){
+                model.addAttribute("model","管理员主页");
+                return "Staff/manager";
+            }else{
+                model.addAttribute("model","学生主页");
+                return "Staff/student";
+            }
+            //return "Staff/main";
         }
     }
 

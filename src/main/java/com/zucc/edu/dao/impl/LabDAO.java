@@ -28,13 +28,47 @@ public class LabDAO implements ILabDAO {
         return list;
     }
 
-//    public SessionFactory getSf() {
-//        return sf;
-//    }
-//
-//    public void setSf(SessionFactory sf) {
-//        this.sf = sf;
-//    }
+    public LabsEntity getById(int id) {
+        Session session = sf.openSession();
+        session.beginTransaction();
+        String hql = "from LabsEntity where idLab = ?";
+        Query query = session.createQuery(hql);
+        query.setParameter(0,id);
+        LabsEntity lab = (LabsEntity) query.uniqueResult();
+        session.getTransaction().commit();
+        session.close();
+        return lab;
+    }
+
+    public boolean add(LabsEntity lab) {
+        Session session = sf.openSession();
+        session.beginTransaction();
+        session.save(lab);
+        session.getTransaction().commit();
+        session.close();
+        return true;
+    }
+
+    public boolean delete(int id) {
+        Session session = sf.openSession();
+        session.beginTransaction();
+        Query query = session.createQuery("delete LabsEntity l where l.idLab=?");
+        query.setParameter(0,id);
+        query.executeUpdate();
+        session.getTransaction().commit();
+        session.close();
+        return true;
+    }
+
+    public boolean modify(LabsEntity lab) {
+        Session session = sf.openSession();
+        session.beginTransaction();
+        session.update(lab);
+        session.getTransaction().commit();
+        session.close();
+        return true;
+    }
+
 
     public static void main(String[] args) {
         LabDAO dao = new LabDAO();

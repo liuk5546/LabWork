@@ -62,6 +62,8 @@
             <list>
                 <value>com/zucc/edu/entity/LabsEntity.hbm.xml</value>
                 <value>com/zucc/edu/entity/Staff.hbm.xml</value>
+                <value>com/zucc/edu/entity/LogsEntity.hbm.xml</value>
+                <value>com/zucc/edu/entity/ComputersEntity.hbm.xml</value>
             </list>
         </property>
         <property name="hibernateProperties">

@@ -13,16 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Repository//说明是数据访问层
 public class StaffDAO implements IStaffDAO {
-    private static List<Staff> staffs = new ArrayList<Staff>();
 
-    /**
-     * 模拟数据库
-     */
-    static {
-        staffs.add(new Staff(1,"教师","翁文勇","123456"));
-        staffs.add(new Staff(2,"学生","刘坤","123456"));
-        staffs.add(new Staff(3,"学生","汤帅","123456"));
-    }
 
     @Resource(name = "sessionFactory")
     private SessionFactory sf;
@@ -53,7 +44,6 @@ public class StaffDAO implements IStaffDAO {
         session.save(staff);
         session.getTransaction().commit();
         session.close();
-        //staffs.add(staff);
         return true;
     }
 
@@ -65,7 +55,6 @@ public class StaffDAO implements IStaffDAO {
         query.executeUpdate();
         session.getTransaction().commit();
         session.close();
-        staffs.remove(getStaffById(id));
         return true;
     }
 

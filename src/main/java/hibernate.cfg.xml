@@ -14,6 +14,8 @@
         <!--<property name="current_session_context_class">thread</property>-->
         <mapping resource="com/zucc/edu/entity/LabsEntity.hbm.xml"/>
         <mapping resource="com/zucc/edu/entity/Staff.hbm.xml"/>
+        <mapping resource="com/zucc/edu/entity/ComputersEntity.hbm.xml"/>
+        <mapping resource="com/zucc/edu/entity/LogsEntity.hbm.xml"/>
         <!-- DB schema will be updated if needed -->
         <!-- <property name="hbm2ddl.auto">update</property> -->
     </session-factory>

@@ -13,4 +13,18 @@ public class LabService {
     public List<LabsEntity> allLabs(){
         return labDAO.getAll();
     }
+
+    public boolean modifyLab(LabsEntity lab){
+        if(labDAO.getById(lab.getIdLab())==null){
+            System.out.println("lab不存在");
+            return false;
+        }else {
+            labDAO.modify(lab);
+            return true;
+        }
+    }
+    public boolean addLab(LabsEntity labsEntity){
+        labDAO.add(labsEntity);
+        return true;
+    }
 }
