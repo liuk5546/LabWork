@@ -7,6 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +53,14 @@ public class StaffController {
             }
             //return "Staff/main";
         }
+    }
+    @RequestMapping("/json/getAll")
+    @ResponseBody
+    public ModelAndView getAll(){
+        List<Staff> staff = staffService.queryAllUSers();
+        ModelAndView mav = new ModelAndView(new MappingJackson2JsonView());
+        mav.addObject(staff);
+        return mav;
     }
 
 }

@@ -30,6 +30,14 @@
 </nav>
 
 <div class="container">
+    <div class="input-field col s12">
+        <select id="selected">
+            <option value="" disabled selected>Choose your option</option>
+
+        </select>
+        <label>Materialize 下拉列表</label>
+    </div>
+
     <table id="table" width="100%" class="centered bordered">
         <tr  class="centered">
             <th>编号</th>
@@ -63,32 +71,60 @@
 <script src="/lib/materialize/js/materialize.min.js"></script>
 <script type="text/javascript" src="/js/init.js"></script>
 <script>
-    function loadTheLabs() {
-        $.ajax({
-            url : "/labs/json/getAll",
-            contentType : "application/json;charset=UTF-8",
-            dataType : "json",
-            success : function (data) {
-
-                if(data != null){
-                    let labs = data.labsEntityList;
-                    //处理数组
-                    labs.forEach(function (t) {
+    var staffs = [];
+    $(document).ready(function() {
+        if(staffs.length===0)
+            $.ajax({
+                url: "/staff/json/getAll",
+                contentType : "application/json;charset=UTF-8",
+                dataType : "json",
+                success:function(data){
+                    data.staffList.forEach(function (t,i) {
+                        staffs.push(t);
+                        let node = document.createElement('option');
+                        node.text = t.nameStaff;
+                        let attr = document.createAttribute('value');
+                        attr.value = i+1;
+                        node.setAttributeNode(attr);
+                        console.log(node);
+                        $("#selected").append(node);
 
                     })
+                    console.log('staffs',staffs);
+                    $('select').material_select();
                 }
-            }
-        })
-    }
+            })
 
+    });
+//    function loadTheLabs() {
+//        $.ajax({
+//            url : "/labs/json/getAll",
+//            contentType : "application/json;charset=UTF-8",
+//            dataType : "json",
+//            success : function (data) {
+//
+//                if(data != null){
+//                    let labs = data.labsEntityList;
+//                    //处理数组
+//                    labs.forEach(function (t) {
+//
+//                    })
+//                }
+//            }
+//        })
+//    }
+    let fomate = function (date) {
+        return ''+(1900+date.getYear())+'年 '+(date.getMonth()+1)+'月 '+date.getDate()+'日 '+date.getHours()+':'
+        +date.getMinutes();
+    }
     //获取数据统计
-    function loadTheLog() {
+    function loadTheLog(staffid) {
         $.ajax({
             url: "/log/stafflog",
             contentType : "application/json;charset=UTF-8",
             dataType : "json",
             data:{
-                id : 31501097
+                id : staffid,
             },
             success : function (data) {
                 if(data!=null){
@@ -96,10 +132,10 @@
                     $('#tbcontent').remove();
                     let html = '';
                     data.logsEntityList.forEach(function (element) {
-                        html+='<tr id="tbcontent">' +
+                        html+='<tr id="tbcontent" >' +
                         '<td>'+element.fkIdStaff+'</td>' +
-                        '<td>'+element.startTime+'</td>' +
-                        '<td>'+element.endTime+'</td>' +
+                        '<td>'+fomate(new Date(element.startTime))+'</td>' +
+                        '<td>'+(element.endTime?fomate(new Date(element.endTime)):'-')+'</td>' +
                         '<td>'+element.fkIdComputers+'</td>' +
                         '</tr>'
                     })
@@ -108,6 +144,14 @@
             }
         })
     }
+    //选中的那个id
+    $("#selected").change(
+        function () {
+            let index = Number.parseInt($("#selected option:selected").val()) - 1;
+            let staffid = staffs[index].idStaff;
+            loadTheLog(staffid);
+    }
+    )
 </script>
 </body>
 </html>
